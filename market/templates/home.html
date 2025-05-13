@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    Welcome to Jim Shaped Coding Market
+{% endblock %}
+{% block content %}
+    <div class="jumbotron jumbotron-fluid text-white bg-dark position-relative text-center mb-0" style="background: linear-gradient(to right, #141e30, #243b55);">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <h1 class="display-4 font-weight-bold mb-3">Divyansh Garg Coding Market</h1>
+        <p class="lead font-weight-normal mb-4">Start purchasing products by clicking the button below.</p>
+        <a class="btn btn-lg btn-outline-light shadow-sm" href="{{ url_for('market_page') }}">
+          <i class="fas fa-store mr-2"></i> Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Decorative Background Shapes (optional) -->
+  <div class="d-none d-md-block position-absolute w-100 h-100" style="top: 0; left: 0; pointer-events: none;">
+    <div class="product-device position-absolute bg-secondary rounded shadow-lg" style="width: 100px; height: 150px; top: 10%; left: 10%; opacity: 0.3;"></div>
+    <div class="product-device product-device-2 position-absolute bg-secondary rounded shadow-lg" style="width: 120px; height: 180px; bottom: 15%; right: 15%; opacity: 0.3;"></div>
+  </div>
+</div>
+
+{% endblock %}
