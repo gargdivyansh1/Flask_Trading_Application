@@ -1,39 +1,53 @@
 {% extends 'base.html' %}
+
 {% block title %}
-Register Page
+    Register
 {% endblock %}
 
 {% block content %}
-<body class="text-center">
-    <div class="container">
-        <form method="POST" class="form-register" style="color:white">
-            {{ form.hidden_tag() }}
-            <h1 class="h3 mb-3 mt-3 font-weight-normal">
-                Please Create your Account
-            </h1>
-            <br>
-            {{ form.username.label() }}
-            {{ form.username(class="form-control", placeholder="User Name") }}
+<div class="d-flex align-items-center justify-content-center min-vh-100 bg-dark">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card bg-black text-white border-secondary shadow-lg rounded-4">
+          <div class="card-body p-4">
+            <h3 class="text-center mb-4">📝 Create Your Account</h3>
+            <form method="POST">
+              {{ form.hidden_tag() }}
 
-            {{ form.email_address.label() }}
-            {{ form.email_address(class="form-control", placeholder="Email Address") }}
+              <div class="mb-3">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control bg-dark text-white border-secondary", placeholder="Enter username") }}
+              </div>
 
-            {{ form.password1.label() }}
-            {{ form.password1(class="form-control", placeholder="Password") }}
+              <div class="mb-3">
+                {{ form.email_address.label(class="form-label") }}
+                {{ form.email_address(class="form-control bg-dark text-white border-secondary", placeholder="Enter email") }}
+              </div>
 
-            {{ form.password2.label() }}
-            {{ form.password2(class="form-control", placeholder="Confirm Password") }}
+              <div class="mb-3">
+                {{ form.password1.label(class="form-label") }}
+                {{ form.password1(class="form-control bg-dark text-white border-secondary", placeholder="Create password") }}
+              </div>
 
-            <br>
+              <div class="mb-3">
+                {{ form.password2.label(class="form-label") }}
+                {{ form.password2(class="form-control bg-dark text-white border-secondary", placeholder="Confirm password") }}
+              </div>
 
-            <div class="checkbox mb-3">
-               <h6>Already have an account?</h6>
-               <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Login</a>
-            </div>
+              <div class="d-grid mb-3">
+                {{ form.submit(class="btn btn-success btn-lg") }}
+              </div>
 
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
-
-        </form>
+              <div class="text-center">
+                <small class="text-muted">Already have an account?</small><br>
+                <a class="btn btn-sm btn-outline-light mt-2" href="{{ url_for('login_page') }}">Login Here</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </div>
+</div>
 {% endblock %}

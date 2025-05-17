@@ -1,59 +1,81 @@
 <style>
   .modal-content {
-    background-color: #212121
+    background-color: #212121;
+    color: white;
+    border-radius: 1rem;
+    border: 1px solid #444;
+  }
+
+  .modal-header, .modal-footer {
+    border: none;
+  }
+
+  .modal-title {
+    font-weight: bold;
   }
 </style>
 
-<!-- More Info -->
+<!-- 🛈 More Info Modal -->
 <div class="modal fade" id="Modal-MoreInfo-{{ item.id }}"
      tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+     aria-labelledby="ModalLabel-MoreInfo-{{ item.id }}"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">
-          <!-- -->
-          {{ item.name }}
+        <h5 class="modal-title" id="ModalLabel-MoreInfo-{{ item.id }}">
+          🛈 {{ item.name }}
         </h5>
-        <button type="button" class="close"
-                data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        {{ item.description }}
+        <p class="text-light">{{ item.description }}</p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-                data-dismiss="modal">Close
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
         </button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Purchase Confirm -->
+<!-- 🛒 Purchase Confirmation Modal -->
 <div class="modal fade" id="Modal-PurchaseConfirm-{{ item.id }}"
      tabindex="-1"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+     aria-labelledby="ModalLabel-Purchase-{{ item.id }}"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">
-          <!-- -->
-          {{ item.name }}
+        <h5 class="modal-title" id="ModalLabel-Purchase-{{ item.id }}">
+          🛒 Confirm Purchase: {{ item.name }}
         </h5>
-        <button type="button" class="close"
-                data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body">
-        Are you sure you want to buy {{ item.name }} for {{ item.price }}$ ?
+        <form method="POST">
+          {{ purchase_form.hidden_tag() }}
+          <p class="fs-5 text-center mb-3">
+            Are you sure you want to purchase <strong>{{ item.name }}</strong> for
+            <span class="text-success">{{ item.price }}$</span>?
+          </p>
+          <p class="text-center small text-muted">
+            By confirming, this item will be added to your owned list.
+          </p>
+
+          <input type="hidden" id="purchased_item" name="purchased_item" value="{{ item.name }}">
+
+          <div class="d-grid gap-2 mt-4">
+            {{ purchase_form.submit(class="btn btn-outline-success btn-lg") }}
+          </div>
+        </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-                data-dismiss="modal">Close
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
         </button>
       </div>
     </div>
