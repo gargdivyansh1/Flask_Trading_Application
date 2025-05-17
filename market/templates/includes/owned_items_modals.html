@@ -1,0 +1,56 @@
+<style>
+  .modal-content {
+    background-color: #212121;
+    color: white;
+    border-radius: 1rem;
+    border: 1px solid #444;
+  }
+  .modal-header, .modal-footer {
+    border: none;
+  }
+  .modal-title {
+    font-weight: bold;
+  }
+</style>
+
+<!-- Selling Confirm Modal -->
+<div class="modal fade" id="Modal-SellingConfirm-{{ owned_item.id }}"
+     tabindex="-1"
+     aria-labelledby="ModalLabel-{{ owned_item.id }}"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel-{{ owned_item.id }}">
+          💼 Sell Item: {{ owned_item.name }}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST">
+          {{ selling_form.hidden_tag() }}
+          <p class="fs-5 text-center mb-3">
+            Are you sure you want to sell <strong>{{ owned_item.name }}</strong> for
+            <span class="text-success">{{ owned_item.price }}$</span>?
+          </p>
+          <p class="text-center small text-muted">
+            This action will put the item back on the market.
+          </p>
+
+          <input type="hidden" id="sold_item" name="sold_item" value="{{ owned_item.name }}">
+
+          <div class="d-grid gap-2 mt-4">
+            {{ selling_form.submit(class="btn btn-outline-danger btn-lg") }}
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
